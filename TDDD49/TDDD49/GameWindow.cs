@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TDDD49
 {
-    public partial class Form1 : Form
+    public partial class GameWindow : Form
     {
-        public Form1()
+        public GameWindow()
         {
             InitializeComponent();
         }
