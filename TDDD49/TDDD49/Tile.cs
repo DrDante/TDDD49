@@ -10,12 +10,23 @@ namespace TDDD49
     {
         private int[] nodeList = new int[8];
         private int orientation = 0; // Can be 0, 1, 2 or 3.
+        // 0 is standard, increasing the number by 1 equals
+        // to a rotation by 90 degrees in a mathematically
+        // positive direction (CCW).
 
         // Tiles are defined by the node connections.
         // nodeConnections[i] = n <=> nodeConnections[n] = i
         // Examples:
         // nodeConnections = "10325476"
         // nodeConnections = "52176043"
+
+        // Tile node chart:
+        //    7  6
+        //    ____
+        // 0 |    | 5
+        // 1 |    | 4
+        //    ¨¨¨¨
+        //    2  3
         public Tile(string nodeConnections)
         {
             // Check if tile is valid.
