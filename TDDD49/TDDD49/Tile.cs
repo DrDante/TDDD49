@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace TDDD49
         // 0 is standard, increasing the number by 1 equals
         // to a rotation by 90 degrees in a mathematically
         // positive direction (CCW).
+        private Image image;
 
         // Tiles are defined by the node connections.
         // nodeConnections[i] = n <=> nodeConnections[n] = i
@@ -27,7 +29,7 @@ namespace TDDD49
         // 1 |    | 4
         //    ¨¨¨¨
         //    2  3
-        public Tile(string nodeConnections)
+        public Tile(string nodeConnections, Image img)
         {
             // Check if tile is valid.
             bool valid = true;
@@ -35,7 +37,8 @@ namespace TDDD49
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    int n = (int)nodeConnections[(int)nodeConnections[i]];
+                    int a = (int)Char.GetNumericValue(nodeConnections[i]);
+                    int n = (int)Char.GetNumericValue(nodeConnections[a]);
                     valid = valid && (i == n);
                 }
             }
@@ -49,8 +52,10 @@ namespace TDDD49
 
             for (int i = 0; i < 8; i++)
             {
-                nodeList[i] = (int)nodeConnections[i];
+                nodeList[i] = (int)Char.GetNumericValue(nodeConnections[i]);
             }
+
+            image = img;
         }
 
         // Returns what node i is connected to.
@@ -65,6 +70,12 @@ namespace TDDD49
             return orientation;
         }
 
+        // Returns image.
+        public Image GetImage()
+        {
+            return image;
+        }
+
         // Rotates tile clockwise.
         public void RotateCW()
         {
@@ -73,6 +84,7 @@ namespace TDDD49
             {
                 orientation = 3;
             }
+            image.RotateFlip(RotateFlipType.Rotate90FlipNone);
         }
 
         // Rotates tile counterclockwise.
@@ -80,6 +92,7 @@ namespace TDDD49
         {
             orientation++;
             orientation = orientation % 4;
+            image.RotateFlip(RotateFlipType.Rotate270FlipNone);
         }
     }
 }
