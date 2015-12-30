@@ -11,12 +11,13 @@ namespace TDDD49
     {
         private int[] nodeList = new int[8];
         private int orientation = 0; // Can be 0, 1, 2 or 3.
-        // 0 is standard, increasing the number by 1 equals
+        // 0 is standard, increasing the number by 1 corresponds
         // to a rotation by 90 degrees in a mathematically
         // positive direction (CCW).
         private Image image;
 
         // Tiles are defined by the node connections.
+        // There is a connection from node i to node n if:
         // nodeConnections[i] = n <=> nodeConnections[n] = i
         // Examples:
         // nodeConnections = "10325476"
@@ -29,9 +30,11 @@ namespace TDDD49
         // 1 |    | 4
         //    ¨¨¨¨
         //    2  3
+
+        // Constructor.
         public Tile(string nodeConnections, Image img)
         {
-            // Check if tile is valid.
+            // Checks if the tile is valid.
             bool valid = true;
             if (nodeConnections.Length == 8)
             {
@@ -47,8 +50,11 @@ namespace TDDD49
                 valid = false;
             }
 
-            // if not valid, throw exception/fit
-            // else, keep going
+            // If the tile image file name was invalid, an exception is thrown.
+            if (!valid)
+            {
+                throw new System.ArgumentException("An attempt was made to create an impossible tile. Check the tile image file names!");
+            }
 
             for (int i = 0; i < 8; i++)
             {
@@ -58,24 +64,7 @@ namespace TDDD49
             image = img;
         }
 
-        // Returns what node i is connected to.
-        public int GetConnection(int i)
-        {
-            return nodeList[i];
-        }
-
-        // Returns current orientation.
-        public int GetOrientation()
-        {
-            return orientation;
-        }
-
-        // Returns image.
-        public Image GetImage()
-        {
-            return image;
-        }
-
+        #region Custom methods
         // Rotates tile clockwise.
         public void RotateCW()
         {
@@ -94,5 +83,26 @@ namespace TDDD49
             orientation = orientation % 4;
             image.RotateFlip(RotateFlipType.Rotate270FlipNone);
         }
+        #endregion
+
+        #region Getters
+        // Gets which node is connected to node i.
+        public int GetConnection(int i)
+        {
+            return nodeList[i];
+        }
+
+        // Gets current orientation.
+        public int GetOrientation()
+        {
+            return orientation;
+        }
+
+        // Gets the tile image.
+        public Image GetImage()
+        {
+            return image;
+        }
+        #endregion
     }
 }
