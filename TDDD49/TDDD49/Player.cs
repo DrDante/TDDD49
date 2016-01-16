@@ -33,6 +33,12 @@ namespace TDDD49
                 hand.Add(tile);
             }
         }
+
+        // Removes the tile specified by num from the players hand.
+        public void RemoveFromHand(int num)
+        {
+            hand.RemoveAt(num - 1);
+        }
         #endregion
 
         #region Getters
@@ -64,6 +70,26 @@ namespace TDDD49
         public int GetTilePos()
         {
             return tilePosition;
+        }
+        #endregion
+
+        #region Setters
+        // Sets the players X position (horizontal).
+        public void SetBoardPosX(int x)
+        {
+            boardPositionX = x;
+        }
+
+        // Sets the players Y position (vertical).
+        public void SetBoardPosY(int y)
+        {
+            boardPositionY = y;
+        }
+
+        // Sets the players tile position.
+        public void SetTilePos(int n)
+        {
+            tilePosition = n;
         }
         #endregion
     }
