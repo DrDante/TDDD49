@@ -193,7 +193,7 @@ namespace TDDD49
             }
 
             // If all players have full hands, the dragon marker goes back to the deck.
-            if (!allHaveFullHands)
+            if (allHaveFullHands)
             {
                 dragonMarkerHome = -1;
             }
