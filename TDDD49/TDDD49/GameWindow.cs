@@ -28,6 +28,7 @@ namespace TDDD49
         private List<Label> playerLabels;
         private List<PictureBox> boardSlots;
 
+        //TestComment matilda
         // Constructor.
         public GameWindow()
         {
